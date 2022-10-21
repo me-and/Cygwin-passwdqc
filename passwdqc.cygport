@@ -1,6 +1,3 @@
-# XXXCRD: this is not finished yet!
-# we still need to account for the fact that it should generate multiple
-# packages, lib, -devel, main
 NAME="passwdqc"
 VERSION=2.0.2
 RELEASE=1
