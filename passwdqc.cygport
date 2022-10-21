@@ -59,4 +59,5 @@ src_install()
 {
   cd $B
   cygmake DESTDIR=$D install_lib install_utils
+  dodoc CHANGES INTERNALS LICENSE README
 }
