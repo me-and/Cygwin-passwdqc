@@ -1,0 +1,15 @@
+category: Security
+requires: cygwin libpasswdqc0 
+sdesc: "password/passphrase strength checking and enforcement toolset"
+ldesc: "passwdqc is a password/passphrase strength checking and policy
+enforcement toolset, including command-line programs (pwqcheck, pwqfilter,
+and pwqgen), and a library (libpasswdqc).
+
+pwqcheck and pwqgen are standalone password/passphrase strength checking
+and random passphrase generator programs, respectively, which are usable
+from scripts. The pwqfilter program searches, creates, or updates binary
+passphrase filter files, which can also be used with pwqcheck.
+
+libpasswdqc is the underlying library, which can also be used from
+third-party programs."
+
