@@ -1,0 +1,62 @@
+# XXXCRD: this is not finished yet!
+# we still need to account for the fact that it should generate multiple
+# packages, lib, -devel, main
+NAME="passwdqc"
+VERSION=2.0.2
+RELEASE=1
+CATEGORY="Security"
+SUMMARY="password/passphrase strength checking and enforcement toolset"
+DESCRIPTION="passwdqc is a password/passphrase strength checking and policy
+enforcement toolset, including command-line programs (pwqcheck, pwqfilter,
+and pwqgen), and a library (libpasswdqc).
+
+pwqcheck and pwqgen are standalone password/passphrase strength checking
+and random passphrase generator programs, respectively, which are usable
+from scripts. The pwqfilter program searches, creates, or updates binary
+passphrase filter files, which can also be used with pwqcheck.
+
+libpasswdqc is the underlying library, which can also be used from
+third-party programs."
+HOMEPAGE="https://www.openwall.com/passwdqc/"
+SRC_URI="https://www.openwall.com/passwdqc/passwdqc-2.0.2.tar.gz
+https://www.openwall.com/passwdqc/passwdqc-2.0.2.tar.gz.sign"
+LICENSE=BSD-3-Clause
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI=LICENSE
+
+PKG_NAMES="${NAME} lib${NAME}0 lib${NAME}-devel"
+
+passwdqc_CONTENTS="
+	usr/bin/pwq*.exe
+	usr/share/doc/passwdqc/
+	usr/share/man/man1/*
+"
+
+libpasswdqc0_CATEGORY="Libs"
+libpasswdqc0_SUMMARY="password/passphrase strength checking and enforcement library"
+libpasswdqc0_CONTENTS="
+	usr/bin/cygpasswdqc-0.dll
+"
+
+libpasswdqc_devel_CATEGORY="Libs"
+libpasswdqc_devel_SUMMARY=${libpasswdqc0_SUMMARY}
+libpasswdqc_devel_CONTENTS="
+  etc/passwdqc.conf
+	usr/include/*.h
+	usr/lib/libpasswdqc.dll.a
+  usr/share/man/man3/*
+  usr/share/man/man5/*
+"
+
+src_compile()
+{
+  lndirs
+  cd $B
+  cygmake utils
+}
+
+src_install()
+{
+  cd $B
+  cygmake DESTDIR=$D install_lib install_utils
+}
